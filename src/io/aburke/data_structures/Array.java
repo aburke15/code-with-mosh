@@ -9,26 +9,22 @@ public class Array {
         this.size = 0;
     }
 
-    // first method is insert an item insert(int item)
     public void insert(int item) {
-        // check the array to see if it's at capacity
         if (size == arr.length)
             resize((arr.length == 0 ? 1 : arr.length) * 2);
 
         arr[size++] = item;
     }
 
-    // remove at index removeAt(int index)
     public void removeAt(int index) {
-        // need to shift items in array over, shift everything to the right one over
-        // check to see if there is an element at said index
-        if (index > (size - 1) || index < 0) return;
+        if (index > (size - 1) || index < 0)
+            throw new IllegalArgumentException("Index is outside the bounds of the array.");
 
         size--;
         for (int i = index; i < size; i++) {
             arr[i] = arr[i + 1];
         }
-        // check for resize
+
         if (size < (arr.length / 4))
             resize(arr.length / 2);
     }
@@ -42,13 +38,27 @@ public class Array {
         return -1;
     }
 
+    public int max() {
+        // runtime complexity is O(n) because we have to compare all
+        // of the numbers in the array
+        int max = Integer.MIN_VALUE;
+
+        for (int i = 0; i < size; i++)
+            max = Math.max(arr[i], max);
+
+        return max;
+    }
+
+    public boolean contains(int item) {
+        return indexOf(item) > -1;
+    }
+
     public void print() {
         for (int i = 0; i < size; i++) {
             System.out.println(arr[i]);
         }
     }
 
-    // private method to resize the array resize(int size)
     private void resize(int size) {
         var temp = new int[size];
         var length = temp.length > size ? size : temp.length;
