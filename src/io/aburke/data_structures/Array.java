@@ -1,37 +1,41 @@
 package io.aburke.data_structures;
 
 public class Array {
-    private int[] arr;
+    private int[] items;
     private int size;
 
-    public Array(int initialSize) {
-        this.arr = new int[initialSize];
-        this.size = 0;
+    public Array(int length) {
+        if (length < 0)
+            throw new IllegalArgumentException("Initial length must be greater than -1.");
+
+        length = length == 0 ? 1 : length;
+        items = new int[length];
+        size = 0;
     }
 
     public void insert(int item) {
-        if (size == arr.length)
-            resize((arr.length == 0 ? 1 : arr.length) * 2);
+        if (isFull())
+            resize(size * 2);
 
-        arr[size++] = item;
+        items[size++] = item;
     }
 
     public void removeAt(int index) {
-        if (index > (size - 1) || index < 0)
+        if (isInvalidIndex(index))
             throw new IllegalArgumentException("Index is outside the bounds of the array.");
 
         size--;
         for (int i = index; i < size; i++) {
-            arr[i] = arr[i + 1];
+            items[i] = items[i + 1];
         }
 
-        if (size < (arr.length / 4))
-            resize(arr.length / 2);
+        if (size < (items.length / 4))
+            resize(items.length / 2);
     }
 
     public int indexOf(int item) {
         for (int i = 0; i < size; i++) {
-            if (arr[i] == item)
+            if (items[i] == item)
                 return i;
         }
 
@@ -44,9 +48,40 @@ public class Array {
         int max = Integer.MIN_VALUE;
 
         for (int i = 0; i < size; i++)
-            max = Math.max(arr[i], max);
+            max = Math.max(items[i], max);
 
         return max;
+    }
+
+    public int[] intersect(int[] otherArray) {
+        for (int i = 0; i < otherArray.length; i++) {
+        }
+
+        return null;
+    }
+
+    public void insertAt(int item, int index) {
+        if (isInvalidIndex(index))
+            throw new IllegalArgumentException("Index is outside the bounds of the array.");
+
+        if (isFull())
+            resize(size * 2);
+
+        for (int i = size - 1; i >= index; i--)
+            items[i + 1] = items[i];
+
+        items[index] = item;
+        size++;
+    }
+
+    public int[] reverse() {
+        var temp = new int[size];
+        var index = 0;
+
+        for (int i = size - 1; i >= 0; i--)
+            temp[index++] = items[i];
+
+        return temp;
     }
 
     public boolean contains(int item) {
@@ -55,20 +90,24 @@ public class Array {
 
     public void print() {
         for (int i = 0; i < size; i++) {
-            System.out.println(arr[i]);
+            System.out.println(items[i]);
         }
     }
 
-    private void resize(int size) {
-        var temp = new int[size];
-        var length = temp.length > size ? size : temp.length;
+    private boolean isInvalidIndex(int index) {
+        return index < 0 || index >= size;
+    }
 
-        var i  = 0;
-        while (i < length) {
-            temp[i] = arr[i];
-            i++;
-        }
+    private boolean isFull() {
+        return size == items.length;
+    }
 
-        arr = temp;
+    private void resize(int length) {
+        var temp = new int[length];
+
+        for (int i = 0; i < size; i++)
+            temp[i] = items[i];
+
+        items = temp;
     }
 }
