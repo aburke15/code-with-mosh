@@ -1,5 +1,7 @@
 package io.aburke.data_structures;
 
+import java.util.ArrayList;
+
 public class Array {
     private int[] items;
     private int size;
@@ -54,10 +56,13 @@ public class Array {
     }
 
     public int[] intersect(int[] otherArray) {
+        var temp = new int[size];
         for (int i = 0; i < otherArray.length; i++) {
+            if (contains(otherArray[i]))
+                temp[i] = otherArray[i];
         }
 
-        return null;
+        return temp;
     }
 
     public void insertAt(int item, int index) {
