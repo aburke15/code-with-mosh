@@ -1,21 +1,13 @@
 package io.aburke.data_structures;
 
-import java.util.Arrays;
-
 public class Main {
 
     public static void main(String[] args) {
-        var array = new Array(3);
-        array.insert(10);
-        array.insert(20);
-        array.insert(30);
-        array.insert(40);
-        array.insert(50);
+        var list = new LinkedList();
+        list.addFirst(30);
+        list.addFirst(20);
+        list.addFirst(10);
 
-        array.insertAt(22, 2);
-        array.insertAt(45, 5);
-
-        array.print();
-        System.out.println();
+        System.out.println(list.toString());
     }
 }
