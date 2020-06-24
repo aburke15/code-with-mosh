@@ -1,7 +1,5 @@
 package io.aburke.data_structures;
 
-import java.util.ArrayList;
-
 public class Array {
     private int[] items;
     private int size;
