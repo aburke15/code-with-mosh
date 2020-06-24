@@ -14,39 +14,49 @@ public class LinkedList {
     private Node last;
 
     public void addFirst(int item) {
-        Node node = new Node(item);
+        var node = new Node(item);
         
-        if (firstOrLastIsNull()) {
-            addFirstAndLastNode(item);
+        if (isEmpty()) {
+            addFirstAndLast(item);
             return;
         }
 
-        Node oldFirst = first;
+        node.next = first;
         first = node;
-        first.next = oldFirst;
     }
 
     public void addLast(int item) {
-        Node node = new Node(item);
+        var node = new Node(item);
 
-        if (firstOrLastIsNull()) {
-            addFirstAndLastNode(item);
+        if (isEmpty()) {
+            addFirstAndLast(item);
             return;
         }
 
-        Node oldLast = last;
+        last.next = node;
         last = node;
-        oldLast.next = last;
     }
 
-    private void addFirstAndLastNode(int item) {
+    public int indexOf(int item) { 
+        var index = 0;
+        for (var x = first; x != null; x = x.next) {
+            if (x.item == item) return index;
+            index++;
+        }
+
+        return -1;
+    }
+
+    public boolean contains(int item) {
+        return indexOf(item) > -1;
+    }
+
+    private void addFirstAndLast(int item) {
         Node node = new Node(item);
-        
-        first = node;
-        last = node;
+        first = last = node;
     }
 
-    private boolean firstOrLastIsNull() {
+    private boolean isEmpty() {
         return (first == null || last == null);
     }
 }

@@ -14,5 +14,7 @@ public class Main {
         list.addFirst(5);
 
         System.out.println(list.toString());
+        System.out.println(list.indexOf(30));
+        System.out.println(list.contains(40));
     }
 }
