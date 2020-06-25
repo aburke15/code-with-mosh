@@ -12,8 +12,8 @@ public class Main {
         list.addLast(20);
         list.addLast(30);
 
-        list.removeFirst();
-        list.removeFirst();
-        list.removeFirst();
+        list.removeLast();
+        list.removeLast();
+        list.removeLast();
     }
 }
