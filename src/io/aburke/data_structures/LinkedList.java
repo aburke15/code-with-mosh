@@ -1,5 +1,7 @@
 package io.aburke.data_structures;
 
+import java.util.NoSuchElementException;
+
 public class LinkedList {
     class Node {
         int item;
@@ -47,8 +49,26 @@ public class LinkedList {
         return -1;
     }
 
+    public void removeFirst() {
+        if (isEmpty())
+            throw new NoSuchElementException();
+
+        if (hasOneElement()) {
+            first = last = null;
+            return;
+        }
+
+        Node oldFirst = first;
+        first = first.next;
+        oldFirst.next = oldFirst = null;
+    }
+
     public boolean contains(int item) {
         return indexOf(item) > -1;
+    }
+
+    public boolean hasOneElement() {
+        return first == last;
     }
 
     private void addFirstAndLast(int item) {
@@ -57,6 +77,6 @@ public class LinkedList {
     }
 
     private boolean isEmpty() {
-        return (first == null || last == null);
+        return first == null || last == null;
     }
 }
