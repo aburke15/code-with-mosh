@@ -24,13 +24,14 @@ public class Array {
         if (isInvalidIndex(index))
             throw new IllegalArgumentException("Index is outside the bounds of the array.");
 
-        size--;
-        for (int i = index; i < size; i++) {
+        for (int i = index; i < size - 1; i++) {
             items[i] = items[i + 1];
         }
 
+        size--;
+
         if (size < (items.length / 4))
-            resize(items.length / 2);
+            resize(size * 2);
     }
 
     public int indexOf(int item) {

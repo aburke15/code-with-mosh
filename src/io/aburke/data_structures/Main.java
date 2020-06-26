@@ -12,8 +12,12 @@ public class Main {
         list.addLast(20);
         list.addLast(30);
 
+        System.out.println(list.size());
         list.removeLast();
+        System.out.println(list.size());
         list.removeLast();
+        System.out.println(list.size());
         list.removeLast();
+        System.out.println(list.size());
     }
 }
