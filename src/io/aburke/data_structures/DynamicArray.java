@@ -71,6 +71,10 @@ public class DynamicArray<E> {
         }
     }
 
+    public boolean contains(E item) {
+        return indexOf(item) > -1;
+    }
+
     public int size() {
         return size;
     }

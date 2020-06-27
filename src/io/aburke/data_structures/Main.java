@@ -13,5 +13,7 @@ public class Main {
         arr.insert(50);
         arr.insert(60);
         System.out.println(arr.indexOf(20));
+        System.out.println(arr.contains(40));
+        System.out.println(arr.contains(70));
     }
 }
