@@ -40,6 +40,12 @@ public class DynamicArray<E> {
     public void removeAt(int index) {
         if (invalidIndex(index))
             throw new IndexOutOfBoundsException();
+
+        items[index] = null;
+        for (int i = index; i < size; i++)
+            items[i] = items[i + 1];
+
+        size--;
     }
 
     public void reverse() {
