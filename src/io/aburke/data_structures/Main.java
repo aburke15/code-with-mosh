@@ -9,9 +9,7 @@ public class Main {
         arr.insert(10);
         arr.insert(20);
         arr.insert(30);
-        arr.insert(40);
-
-
+        arr.reverse();
         var list = new LinkedList();
         // list.addFirst(30);
         // list.addFirst(20);

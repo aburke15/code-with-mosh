@@ -99,7 +99,7 @@ public class Array {
     }
 
     private boolean isInvalidIndex(int index) {
-        return index < 0 || index >= size;
+        return index < 0 || index >= items.length - 1;
     }
 
     private boolean isFull() {
