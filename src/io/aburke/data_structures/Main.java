@@ -9,22 +9,9 @@ public class Main {
         arr.insert(10);
         arr.insert(20);
         arr.insert(30);
-        arr.removeAt(1);
-        var list = new LinkedList();
-        // list.addFirst(30);
-        // list.addFirst(20);
-        // list.addFirst(10);
-
-        list.addLast(10);
-        list.addLast(20);
-        list.addLast(30);
-
-        System.out.println(list.size());
-        list.removeLast();
-        System.out.println(list.size());
-        list.removeLast();
-        System.out.println(list.size());
-        list.removeLast();
-        System.out.println(list.size());
+        arr.insert(40);
+        arr.insert(50);
+        arr.insert(60);
+        System.out.println(arr.indexOf(20));
     }
 }

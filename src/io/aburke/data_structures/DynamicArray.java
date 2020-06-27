@@ -48,6 +48,18 @@ public class DynamicArray<E> {
         size--;
     }
 
+    public int indexOf(E item) {
+        var lastIndex = size - 1;
+        for (int i = 0; i < size; i++) {
+            if (items[i] == item)
+                return i;
+            if (items[lastIndex - i] == item)
+                return lastIndex - i;
+        }
+
+        return -1;
+    }
+
     public void reverse() {
         int n = size;
         for (int i = 0; i < n / 2; i++) {
