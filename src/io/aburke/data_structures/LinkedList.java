@@ -80,6 +80,16 @@ public class LinkedList {
         size--;
     }
 
+    public int[] toArray() {
+        var items = new int[size];
+        var i = 0;
+
+        for (var x = first; x != null; x = x.next)
+            items[i++] = x.item;
+
+        return items;
+    }
+
     public int size() {
         return size;
     }
