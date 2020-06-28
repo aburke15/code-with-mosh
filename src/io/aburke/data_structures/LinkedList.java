@@ -110,6 +110,21 @@ public class LinkedList {
         first = p;
     }
 
+    public Node kthNodeFromEnd(int k) {
+        var i = 0;
+        Node p = first;
+        Node c = first;
+
+        while (c.next != null) {
+            c = c.next;
+            
+            if (i++ >= (k - 1))
+                p = p.next;
+        }
+
+        return p;
+    }
+
     public int size() {
         return size;
     }
