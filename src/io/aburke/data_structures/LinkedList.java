@@ -90,6 +90,26 @@ public class LinkedList {
         return items;
     }
 
+    public void reverse() {
+        if (isEmpty()) return;
+
+        Node p = null;
+        Node c = first;
+        Node n = first.next;
+
+        while (c != null) {
+            c.next = p;
+            p = c;
+            c = n;
+
+            if (n != null)
+                n = n.next;
+        }
+
+        last = first;
+        first = p;
+    }
+
     public int size() {
         return size;
     }
