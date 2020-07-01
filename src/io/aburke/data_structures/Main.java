@@ -14,8 +14,6 @@ public class Main {
         list.addLast(50);
         list.addLast(60);
 
-        list.printMiddle();
-
-        list.addFirst(5);
+        System.out.println(list.hasCycle());
     }
 }
