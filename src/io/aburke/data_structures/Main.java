@@ -11,8 +11,10 @@ public class Main {
         list.addLast(20);
         list.addLast(30);
         list.addLast(40);
+        list.addLast(50);
+        list.addLast(60);
 
-        var node = list.kthNodeFromEnd(3);
+        list.printMiddle();
 
         list.addFirst(5);
     }

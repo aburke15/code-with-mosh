@@ -1,4 +1,5 @@
 package io.aburke.data_structures;
+import java.util.Arrays;
 
 import java.util.NoSuchElementException;
 
@@ -123,6 +124,25 @@ public class LinkedList {
         }
 
         return p;
+    }
+
+    public void printMiddle() {
+        if (isEmpty())
+            throw new IllegalStateException();
+
+        Node p = first;
+        Node c = first;
+
+        while (c != last && c.next != last) {
+            p = p.next;
+            c = c.next.next;
+        }
+
+        if (c == last) {
+            System.out.println(p.item);
+        } else {
+            System.out.println(p.item + " " + p.next.item);
+        } 
     }
 
     public int size() {
