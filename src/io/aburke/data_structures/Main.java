@@ -1,19 +1,15 @@
 package io.aburke.data_structures;
 
-import java.util.Arrays;
+import java.util.Stack;
+
+import io.StringReverser;
 
 public class Main {
 
     public static void main(String[] args) {
-        var list = new LinkedList();
+        var alpla = "abcd";
+        var reverser = new StringReverser();
 
-        list.addLast(10);
-        list.addLast(20);
-        list.addLast(30);
-        list.addLast(40);
-        list.addLast(50);
-        list.addLast(60);
-
-        System.out.println(list.hasCycle());
+        System.out.println(reverser.reverse(alpla));
     }
 }
