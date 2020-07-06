@@ -3,20 +3,11 @@ package io.aburke.data_structures;
 public class Main {
 
     public static void main(String[] args) {
-        var stack = new Stack(5);
-        stack.push(10);
-        stack.push(20);
-        stack.push(30);
+        var stack = new TwoStacks(6);
 
-        System.out.println(stack.size());
-
-        var item1 = stack.pop();
-        var peek1 = stack.peek();
-        var item2 = stack.pop();
-        var item3 = stack.pop();
-
-        System.out.println(stack.isEmpty());
-
-        System.out.println(stack.size());
+        stack.push1(10);
+        stack.push1(20);
+        stack.push2(15);
+        stack.push1(30);
     }
 }
