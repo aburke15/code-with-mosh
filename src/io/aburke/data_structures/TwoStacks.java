@@ -1,57 +1,38 @@
 package io.aburke.data_structures;
 
 public class TwoStacks {
-    class StackItem {
-        int item;
-        boolean stackOne;
+    private int[] items;
+    private int top1, top2;
 
-        public StackItem(int item, boolean stackOne) {
-            this.item = item;
-            this.stackOne = stackOne;
-        }
-    }
-
-    private StackItem[] items;
-    private int size = 0;
-
-    public TwoStacks(int size) {
-        items = new StackItem[size];
+    public TwoStacks(int n) {
+        items = new int[n];
+        top1 = 0;
+        top2 = n - 1;
     }
 
     public void push1(int item) {
-        if (isFull())
+        if (isFull1())
             throw new StackOverflowError();
 
-        pushStackItem(item, true);
+        items[top1++] = item;
     }
 
     public void push2(int item) {
-        if (isFull())
+        if (isFull2())
             throw new StackOverflowError();
-        
-        pushStackItem(item, false);
+
+        items[top2--] = item;
     }
 
     public int pop1() {
-
-        return -1;
+        return -1; 
     }
 
-    public int pop2() {
-        
-        return -1;
+    private boolean isFull1() {
+        return (top1 > top2);
     }
 
-    private boolean isFull() {
-        return size >= items.length;
-    }
-
-    private boolean isEmpty() {
-        return size <= 0;
-    }
-
-    private void pushStackItem(int item, boolean stackOne) {
-        StackItem stackItem = new StackItem(item, stackOne);
-        items[size++] = stackItem;
+    private boolean isFull2() {
+        return (top1 > top2);
     }
 }
