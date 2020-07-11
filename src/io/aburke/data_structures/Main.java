@@ -1,21 +1,20 @@
 package io.aburke.data_structures;
 
+import java.util.ArrayDeque;
+
 public class Main {
 
     public static void main(String[] args) {
-        var stack = new MinStack(5);
+        var queue = new ArrayDeque<Integer>();
+        var reverser = new QueueReverser();
 
-        stack.push(10);
-        stack.push(2);
-        stack.push(4);
-        stack.push(5);
-        stack.push(1);
-        System.out.println(stack.min());
-        stack.pop();
-        System.out.println(stack.min());
-        stack.pop();
-        stack.pop();
-        stack.pop();
-        System.out.println(stack.min());
+        queue.add(10);
+        queue.add(20);
+        queue.add(30);
+
+        System.out.println(queue);
+
+        reverser.reverse(queue);
+        System.out.println(queue);
     }
 }
