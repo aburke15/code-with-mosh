@@ -1,11 +1,9 @@
 package io.aburke.data_structures;
 
-import java.util.ArrayDeque;
-
 public class Main {
 
     public static void main(String[] args) {
-        var queue = new ArrayQueue(5);
+        var queue = new StackQueue();
 
         queue.enqueue(10);
         queue.enqueue(20);
