@@ -5,16 +5,24 @@ import java.util.ArrayDeque;
 public class Main {
 
     public static void main(String[] args) {
-        var queue = new ArrayDeque<Integer>();
-        var reverser = new QueueReverser();
+        var queue = new ArrayQueue(5);
 
-        queue.add(10);
-        queue.add(20);
-        queue.add(30);
+        queue.enqueue(10);
+        queue.enqueue(20);
+        queue.enqueue(30);
+        queue.enqueue(40);
+        queue.enqueue(50);
 
-        System.out.println(queue);
+        System.out.println(queue.toString());
 
-        reverser.reverse(queue);
-        System.out.println(queue);
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+
+        queue.dequeue();
+
+        System.out.println(queue.toString());
     }
 }
