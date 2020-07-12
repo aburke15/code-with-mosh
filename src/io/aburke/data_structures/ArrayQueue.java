@@ -6,9 +6,9 @@ public class ArrayQueue {
     private int[] items;
     private int size, first, last;
 
-    public ArrayQueue(int size) {
-        items = new int[size];
-        this.size = first = last = 0;
+    public ArrayQueue(int capacity) {
+        items = new int[capacity];
+        size = first = last = 0;
     }
 
     public void enqueue(int item) {
