@@ -1,18 +1,24 @@
 package io.aburke.data_structures;
 
-
 public class Main {
-
     public static void main(String[] args) {
-        var queue = new LinkedListQueue();
+        StackWithTwoQueues stack = new StackWithTwoQueues();
 
-        queue.enqueue(1);
-        queue.enqueue(5);
-        queue.enqueue(3);
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
 
-        var peek = queue.peek();
-        var dequeue = queue.dequeue();
-        System.out.println(peek);
-        System.out.println(dequeue);
+        var pop1 = stack.pop();
+        var peek1 = stack.peek();
+
+        stack.push(40);
+        stack.push(50);
+
+        var pop2 = stack.pop();
+        var pop3 = stack.pop();
+        var pop4 = stack.pop();
+
+        System.out.println(pop1);
+        System.out.println(peek1);
     }
 }

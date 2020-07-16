@@ -51,8 +51,18 @@ public class PriorityQueue {
         return size >= items.length;
     }
 
-    private void reverseItemsInQueue(int k) {
-        
+    public void reverse(int k) {
+        if (k < 0 || k > items.length)
+            throw new IllegalArgumentException();
+
+        int n = k;
+        for (var i = 0; i < n / 2; i++) {
+            var lastIndex = n - i - 1;
+            var temp = items[i];
+
+            items[i] = items[lastIndex];
+            items[lastIndex] = temp;
+        }
     }
 
     @Override
@@ -73,7 +83,7 @@ public class PriorityQueue {
 
     private void resize(int length) {
         int[] temp = new int[length];
-        for (int i = 0; i < size; i++) 
+        for (int i = 0; i < size; i++)
             temp[i] = items[i];
 
         items = temp;
