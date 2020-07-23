@@ -2,9 +2,9 @@ package io.aburke.data_structures;
 
 public class Main {
     public static void main(String[] args) {
-        NonRepeatedCharacter nrc = new NonRepeatedCharacter();
+        RepeatedCharacter rc = new RepeatedCharacter();
 
-        var res = nrc.getFirstNonRepeatedChar("a green apple");
+        var res = rc.findFirstRepeatedCharacter("a green apple");
         System.out.println(res);
     }
 }
