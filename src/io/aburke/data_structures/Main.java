@@ -2,9 +2,12 @@ package io.aburke.data_structures;
 
 public class Main {
     public static void main(String[] args) {
-        RepeatedCharacter rc = new RepeatedCharacter();
+        var table = new HashTable();
 
-        var res = rc.findFirstRepeatedCharacter("a green apple");
-        System.out.println(res);
+        table.put(10, "Hello");
+        table.put(5, "World");
+        table.put(8, "What's Good");
+        table.put(10, "YoYo");
+        table.put(263, "HeyOOOooo");
     }
 }
