@@ -4,43 +4,74 @@ import java.util.LinkedList;
 
 public class HashTable {
     private class Entry {
-        private int key;
-        private String value;
+        int key;
+        String value;
         public Entry(int key, String value) {
             this.key = key;
             this.value = value;
-        }
+        } 
     }
 
-    private LinkedList[] items;
+    private LinkedList<Entry>[] entries;
     private int size;
 
-    public HashTable() {
-        items = new LinkedList[10];
+    public HashTable(int capacity) {
+        entries = new LinkedList[capacity];
         size = 0;
     }
 
     public void put(int key, String value) {
-        var entry = new Entry(key, value);
         var index = hash(key);
-        var node = items[index];
-
-        if (node == null) {
-            var list = new LinkedList<Entry>();
-            list.addLast(entry);
-            items[index] = list;
-        } else {
-            items[index].addLast(entry);
+        if (entries[index] == null) {
+            addNewBucketEntry(index, key, value);
+            return;
+        }
+        
+        var bucket = entries[index];
+        for (var entry : bucket) {
+            if (entry.key == key) {
+                entry.value = value;
+                return;
+            }
         }
 
+        bucket.addLast(new Entry(key, value));
         size++;
+    }
+
+    public String get(int key) {
+        var index = hash(key);
+        var bucket = entries[index];
+        
+        if (bucket != null) {
+            for (var entry : bucket) {
+                if (entry.key == key)
+                    return entry.value;
+            }
+        }
+
+        return null;
     }
 
     public int size() {
         return size;
     }
 
+    private void addNewBucketEntry(
+        int index,
+        int key, 
+        String value
+    ) {
+        entries[index] = new LinkedList<Entry>();
+        entries[index].addLast(new Entry(key, value));
+        size++;
+    }
+
     private int hash(int key) {
-        return key % items.length;
+        int absKey = -1;
+        if (key < 0)
+            absKey = Math.abs(key);
+
+        return (absKey >= 0 ? absKey : key) % entries.length;
     }
 }
