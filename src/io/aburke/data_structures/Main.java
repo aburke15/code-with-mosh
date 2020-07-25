@@ -7,15 +7,14 @@ public class Main {
     public static void main(String[] args) {
         var table = new HashTable(10);
 
-        table.put(10, "Hello");
-        table.put(5, "World");
-        table.put(8, "What's Good");
-        table.put(10, "YoYo"); 
-        table.put(263, "HeyOOOooo");
-        table.put(100, "It's a meeeee!");
+        table.put(10, "First");
+        table.put(20, "Middle");
+        table.put(30, "Last");
 
         System.out.println(table.get(10));
+        System.out.println(table.remove(20));
 
-        Map<Integer, String> map = new HashMap<>();
+        // Map<Integer, String> map = new HashMap<>();
+        // var item = map.remove(10);
     }
 }
