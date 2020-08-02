@@ -28,50 +28,47 @@ public class HashTable {
             return;
         }
 
-        var bucket = entries[index];
-        for (var entry : bucket) {
-            if (entry.key == key) {
-                entry.value = value;
-                return;
-            }
+        var entry = getEntry(key);        
+        if (entry != null && entry.key == key) {
+            entry.value = value;
+            return;
         }
 
-        bucket.addLast(new Entry(key, value));
+        getBucket(key).addLast(new Entry(key, value));
         size++;
     }
 
-    public String get(int key) {
-        var index = hash(key);
-        var bucket = entries[index];
-
-        if (bucket != null) {
-            for (var entry : bucket) {
-                if (entry.key == key)
-                    return entry.value;
-            }
-        }
-
-        return null;
+    public String get(int key)  {
+        return getEntry(key) == null ? null : getEntry(key).value;
     }
 
     public void remove(int key) {
-        var index = hash(key);
-        var bucket = entries[index];
-
-        if (bucket == null)
+        var entry = getEntry(key); 
+        if (entry == null)
             throw new IllegalStateException();
 
-        for (var entry : bucket) {
-            if (entry.key == key) {
-                bucket.remove(entry);
-                size--;
-                return;
-            }
-        }
+        getBucket(key).remove(entry);
+        size--;
     }
 
     public int size() {
         return size;
+    }
+
+    private LinkedList<Entry> getBucket(int key) {
+        return entries[hash(key)];
+    }
+
+    private Entry getEntry(int key) {
+        var bucket = getBucket(key);
+        if (bucket != null) {
+            for (var entry : bucket) {
+                if (entry.key == key)
+                    return entry;
+            }
+        }
+
+        return null;
     }
 
     private void addNewBucketEntry(int index, int key, String value) {
