@@ -22,28 +22,22 @@ public class HashTable {
     }
 
     public void put(int key, String value) {
-        var index = hash(key);
-        if (entries[index] == null) {
-            addNewBucketEntry(index, key, value);
-            return;
-        }
-
-        var entry = getEntry(key);        
-        if (entry != null && entry.key == key) {
+        var entry = getEntry(key);
+        if (entry != null) {
             entry.value = value;
             return;
         }
 
-        getBucket(key).addLast(new Entry(key, value));
+        getOrCreateBucket(key).add(new Entry(key, value));
         size++;
     }
 
-    public String get(int key)  {
+    public String get(int key) {
         return getEntry(key) == null ? null : getEntry(key).value;
     }
 
     public void remove(int key) {
-        var entry = getEntry(key); 
+        var entry = getEntry(key);
         if (entry == null)
             throw new IllegalStateException();
 
@@ -59,6 +53,16 @@ public class HashTable {
         return entries[hash(key)];
     }
 
+    private LinkedList<Entry> getOrCreateBucket(int key) {
+        var index = hash(key);
+        var bucket = entries[index];
+
+        if (bucket == null)
+            bucket = entries[index] = new LinkedList<Entry>();
+
+        return bucket;
+    }
+
     private Entry getEntry(int key) {
         var bucket = getBucket(key);
         if (bucket != null) {
@@ -69,12 +73,6 @@ public class HashTable {
         }
 
         return null;
-    }
-
-    private void addNewBucketEntry(int index, int key, String value) {
-        entries[index] = new LinkedList<Entry>();
-        entries[index].addLast(new Entry(key, value));
-        size++;
     }
 
     private int hash(int key) {
