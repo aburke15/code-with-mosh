@@ -33,18 +33,25 @@ public class HashTableExercises {
 
         HashMap<Integer, Integer> map = new HashMap<>();
 
-        for (int i = 0; i < nums.length; i++) {
-            for (int j = nums.length - 1; j > i; j--) {
-                int a = nums[i];
-                int b = nums[j];
+        return map.size();
+    }
 
-                if (a < b && (b - a == k))
-                    map.put(a, b);
-                else if (b < a && (a - b == k))
-                    map.put(b, a);
-            }
+    public int[] twoSum(int[] nums, int target) {
+        if (nums == null)
+            throw new IllegalArgumentException();
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        // nums = [2, 7, 11, 15]
+        // target = 9
+        for (var num : nums) {
+
         }
 
-        return map.size();
+        for (var entry : map.entrySet()) {
+
+        }
+
+        return new int[] { 1 };
     }
 }
