@@ -1,6 +1,9 @@
 package io.aburke.data_structures;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class HashTableExercises {
     public int mostFrequent(int[] nums) {
@@ -31,27 +34,35 @@ public class HashTableExercises {
         if (nums == null)
             throw new IllegalArgumentException();
 
-        HashMap<Integer, Integer> map = new HashMap<>();
+        Map<Integer, String> map = new HashMap<>();
+        var count = 0;
 
-        return map.size();
+        for (var i : nums)
+            map.put(i, "");
+
+        for (var i : nums) {
+            if ((map.get(i + k) != null))
+                count++;
+        }
+
+        return count;
     }
 
     public int[] twoSum(int[] nums, int target) {
         if (nums == null)
             throw new IllegalArgumentException();
 
-        HashMap<Integer, Integer> map = new HashMap<>();
+        HashMap<Integer, String> map = new HashMap<>();
 
-        // nums = [2, 7, 11, 15]
-        // target = 9
-        for (var num : nums) {
+        for (var i : nums)
+            map.put(i, "");
 
+        List<Integer> output = new ArrayList<>();
+        for (var i = 0; i < nums.length; i++) {
+            if (map.get(target - nums[i]) != null)
+                output.add(i);
         }
-
-        for (var entry : map.entrySet()) {
-
-        }
-
-        return new int[] { 1 };
+        // revist this and change this is returned
+        return new int[] { output.remove(0), output.remove(0) };
     }
 }
