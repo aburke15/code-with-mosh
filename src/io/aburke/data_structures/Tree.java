@@ -2,12 +2,16 @@ package io.aburke.data_structures;
 
 public class Tree {
     private class Node {
-        int value;
-        Node leftChild;
-        Node rightChild;
+        private int value;
+        private Node leftChild;
+        private Node rightChild;
 
         Node(int value) {
             this.value = value;
+        }
+
+        public String toString() {
+            return "Node=" + value;
         }
     }
 
@@ -32,19 +36,25 @@ public class Tree {
             return;
         }
 
-        Node current = root;
+        var current = root;
         while (current != null) {
+            if (current.value == value)
+                return;
+
             if (value < current.value) {
                 if (current.leftChild == null) {
                     current.leftChild = node;
+                    size++;
                     return;
                 }
+
                 current = current.leftChild;
             }
 
             if (value > current.value) {
                 if (current.rightChild == null) {
                     current.rightChild = node;
+                    size++;
                     return;
                 }
 
@@ -54,6 +64,16 @@ public class Tree {
     }
 
     public boolean find(int value) {
+        var current = root;
+        while (current != null) {
+            if (current.value == value)
+                return true;
+            if (value < current.value)
+                current = current.leftChild;
+            if (value > current.value)
+                current = current.rightChild;
+        }
+
         return false;
     }
 
