@@ -76,3 +76,4 @@ fabric.properties
 
 # VS Code 
 .vscode
+test.sql

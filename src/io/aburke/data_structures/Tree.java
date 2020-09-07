@@ -22,9 +22,59 @@ public class Tree {
         size = 0;
     }
 
-    private Node lookup(int value) {
+    public int height() {
+        return height(root);
+    }
 
-        return null;
+    private int height(Node root) {
+        if (root == null)
+            return -1;
+
+        if ((root.leftChild == null) && (root.rightChild == null))
+            return 0;
+
+        return 1 + Math.max(height(root.leftChild), height(root.rightChild));
+    }
+
+    public void traversePostOrder() {
+        traversePostOrder(root);
+    }
+
+    private void traversePostOrder(Node root) {
+        if (root == null)
+            return;
+
+        traversePostOrder(root.leftChild);
+        traversePostOrder(root.rightChild);
+
+        System.out.println(root.value);
+    }
+
+    public void traverseInOrder() {
+        traverseInOrder(root);
+    }
+
+    private void traverseInOrder(Node root) {
+        if (root == null)
+            return;
+
+        traverseInOrder(root.leftChild);
+        System.out.println(root.value);
+        traverseInOrder(root.rightChild);
+    }
+
+    public void traversePreOrder() {
+        traversePreOrder(root);
+    }
+
+    private void traversePreOrder(Node root) {
+        if (root == null)
+            return;
+
+        System.out.println(root.value);
+
+        traversePreOrder(root.leftChild);
+        traversePreOrder(root.rightChild);
     }
 
     public void insert(int value) {
@@ -79,5 +129,9 @@ public class Tree {
 
     public int delete(int value) {
         return -1;
+    }
+
+    public int size() {
+        return size;
     }
 }
