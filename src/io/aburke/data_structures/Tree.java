@@ -30,10 +30,58 @@ public class Tree {
         if (root == null)
             return -1;
 
-        if ((root.leftChild == null) && (root.rightChild == null))
+        if (isLeaf(root))
             return 0;
 
         return 1 + Math.max(height(root.leftChild), height(root.rightChild));
+    }
+
+    public int minBT() {
+        return minBT(root);
+    }
+
+    private int minBT(Node node) {
+        if (isLeaf(node))
+            return node.value;
+
+        var left = minBT(node.leftChild);
+        var right = minBT(node.rightChild);
+
+        return Math.min(node.value, Math.min(left, right));
+    }
+
+    private boolean isLeaf(Node node) {
+        return node.leftChild == null && node.rightChild == null;
+    }
+
+    public int minIterative() {
+        return minIterative(root);
+    }
+
+    private int minIterative(Node node) {
+        if (node == null)
+            throw new IllegalStateException();
+
+        var last = node;
+        while (last.leftChild != null) {
+            last = last.leftChild;
+        }
+
+        return last.value;
+    }
+
+    public int minBST() {
+        return minBST(root);
+    }
+
+    private int minBST(Node node) {
+        if (node == null)
+            throw new IllegalStateException();
+
+        if (node.leftChild == null)
+            return node.value;
+
+        return minBST(node.leftChild);
     }
 
     public void traversePostOrder() {
