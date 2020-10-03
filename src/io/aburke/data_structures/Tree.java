@@ -28,6 +28,14 @@ public class Tree {
         root.rightChild = temp;
     }
 
+    public void nodesAtKDistance(int k) {
+        nodesAtKDistance(root, k);
+    }
+
+    private void nodesAtKDistance(Node root, int k) {
+
+    }
+
     public boolean isBinarySearchTree() {
         return isBinarySearchTree(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
