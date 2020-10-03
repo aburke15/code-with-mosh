@@ -70,7 +70,7 @@ public class Tree {
         if (node == null)
             return true;
 
-        if (min < node.value && node.value < max) {
+        if ((min < node.value) && (node.value < max)) {
             return isBinarySearchTree(node.leftChild, min, node.value)
                     && isBinarySearchTree(node.rightChild, node.value, max);
         }
