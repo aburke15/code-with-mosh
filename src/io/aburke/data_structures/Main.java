@@ -16,8 +16,7 @@ public class Main {
         bst.insert(0);
         bst.insert(3);
 
-        var list = bst.getNodesAtDistance(3);
-        System.out.println(list.toString());
+        bst.levelOrderTraversal();
     }
 
     public static int factorialRecursive(int n) {

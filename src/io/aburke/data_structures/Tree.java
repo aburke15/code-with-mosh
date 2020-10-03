@@ -30,6 +30,19 @@ public class Tree {
         root.rightChild = temp;
     }
 
+    public void levelOrderTraversal() {
+        levelOrderTraversal(root);
+    }
+
+    private void levelOrderTraversal(Node root) {
+        if (root == null) return;
+
+        System.out.println(root.value);
+
+        levelOrderTraversal(root.leftChild);
+        levelOrderTraversal(root.rightChild);
+    }
+
     public ArrayList<Integer> getNodesAtDistance(int k) {
         var list = new ArrayList<Integer>();
         getNodesAtDistance(root, k, list);
