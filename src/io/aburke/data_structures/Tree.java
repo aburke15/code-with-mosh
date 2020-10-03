@@ -22,6 +22,47 @@ public class Tree {
         size = 0;
     }
 
+    public void swapRoot() {
+        var temp = root.leftChild;
+        root.leftChild = root.rightChild;
+        root.rightChild = temp;
+    }
+
+    public boolean isBinarySearchTree() {
+        return isBinarySearchTree(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    private boolean isBinarySearchTree(Node node, int min, int max) {
+        if (node == null)
+            return true;
+
+        if (min < node.value && node.value < max) {
+            return isBinarySearchTree(node.leftChild, min, node.value)
+                    && isBinarySearchTree(node.rightChild, node.value, max);
+        }
+
+        return false;
+    }
+
+    public boolean equals(Tree other) {
+        if (other == null)
+            return false;
+
+        return equals(root, other.root);
+    }
+
+    private boolean equals(Node first, Node second) {
+        if (first == null && second == null)
+            return true;
+
+        if (first != null && second != null) {
+            return first.value == second.value && equals(first.leftChild, second.leftChild)
+                    && equals(first.rightChild, second.rightChild);
+        }
+
+        return false;
+    }
+
     public int height() {
         return height(root);
     }
