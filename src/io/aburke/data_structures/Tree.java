@@ -1,5 +1,7 @@
 package io.aburke.data_structures;
 
+import java.util.ArrayList;
+
 public class Tree {
     private class Node {
         private int value;
@@ -28,12 +30,23 @@ public class Tree {
         root.rightChild = temp;
     }
 
-    public void nodesAtKDistance(int k) {
-        nodesAtKDistance(root, k);
+    public ArrayList<Integer> getNodesAtDistance(int k) {
+        var list = new ArrayList<Integer>();
+        getNodesAtDistance(root, k, list);
+
+        return list;
     }
 
-    private void nodesAtKDistance(Node root, int k) {
+    private void getNodesAtDistance(Node node, int k, ArrayList<Integer> list) {
+        if (node == null) return;
 
+        if (k == 0) {
+            list.add(node.value);
+            return;
+        }
+
+        getNodesAtDistance(node.leftChild, k - 1, list);
+        getNodesAtDistance(node.rightChild, k - 1, list);
     }
 
     public boolean isBinarySearchTree() {

@@ -1,5 +1,7 @@
 package io.aburke.data_structures;
 
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
         Tree bst = new Tree();
@@ -11,8 +13,11 @@ public class Main {
         bst.insert(6);
         bst.insert(8);
         bst.insert(10);
+        bst.insert(0);
+        bst.insert(3);
 
-        System.out.println(bst.isBinarySearchTree());
+        var list = bst.getNodesAtDistance(3);
+        System.out.println(list.toString());
     }
 
     public static int factorialRecursive(int n) {
