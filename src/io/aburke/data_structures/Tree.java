@@ -30,23 +30,67 @@ public class Tree {
         root.rightChild = temp;
     }
 
-    public void levelOrderTraversal() {
-        levelOrderTraversal(root);
+    private class Counter {
+        private int count;
+        public Counter() {
+            this.count = 0;
+        }
+
+        public void increment() {
+            this.count++;
+        }
+
+        public int getCount() {
+            return this.count;
+        }
     }
 
-    private void levelOrderTraversal(Node root) {
+    public int countLeaves() {
+        var counter = new Counter();
+        countLeaves(root, counter);
+
+        return counter.getCount();
+    }
+
+    private void countLeaves(Node root, Counter counter) {
+        if (root == null)
+            return;
+
+        countLeaves(root.leftChild, counter);
+        countLeaves(root.rightChild, counter);
+
+        if (isLeaf(root)) {
+            counter.increment();
+            return;
+        }
+    }
+
+    public void traverseLevelOrder() {
+        var height = height();
+        for (var i = 0; i <= height; i++) {
+            printNodesAtDistance(i);
+        }
+    }
+
+    public void printNodesAtDistance(int k) {
+        printNodesAtDistance(root, k);
+    }
+
+    private void printNodesAtDistance(Node root, int k) {
         if (root == null) return;
 
-        System.out.println(root.value);
+        if (k == 0) {
+            System.out.println(root.value);
+            return;
+        }
 
-        levelOrderTraversal(root.leftChild);
-        levelOrderTraversal(root.rightChild);
+        printNodesAtDistance(root.leftChild, k - 1);
+        printNodesAtDistance(root.rightChild, k - 1);
     }
 
     public ArrayList<Integer> getNodesAtDistance(int k) {
         var list = new ArrayList<Integer>();
         getNodesAtDistance(root, k, list);
-
         return list;
     }
 
