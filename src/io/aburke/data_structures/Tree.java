@@ -39,6 +39,28 @@ public class Tree {
         size = 0;
     }
 
+    public boolean areSiblings(int first, int second) {
+        return areSiblings(root, first, second);
+    }
+
+    private boolean areSiblings(Node root, int first, int second) {
+        if (root == null) return false;
+
+        if (isLeaf(root) == false) {
+            if (isChild(root.leftChild, first, second) &&
+                    isChild(root.rightChild, first, second)) {
+                return true;
+            }
+        }
+
+        return areSiblings(root.leftChild, first, second) ||
+                areSiblings(root.rightChild, first, second);
+    }
+
+    private boolean isChild(Node root, int first, int second) {
+        return (root.value == first || root.value == second);
+    }
+
     public boolean contains(int value) {
         return contains(root, value);
     }
