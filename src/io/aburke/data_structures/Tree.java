@@ -39,6 +39,18 @@ public class Tree {
         size = 0;
     }
 
+    public ArrayList<Integer> getAncestors(int value) {
+        var list = new ArrayList<Integer>();
+        getAncestors(root, value);
+        return list;
+    }
+
+    private void getAncestors(Node root, int value) {
+        if (root == null) return;
+
+        
+    }
+
     public boolean areSiblings(int first, int second) {
         return areSiblings(root, first, second);
     }
@@ -46,7 +58,7 @@ public class Tree {
     private boolean areSiblings(Node root, int first, int second) {
         if (root == null) return false;
 
-        if (isLeaf(root) == false) {
+        if (!isLeaf(root)) {
             if (isChild(root.leftChild, first, second) &&
                     isChild(root.rightChild, first, second)) {
                 return true;
@@ -120,10 +132,8 @@ public class Tree {
         countLeaves(root.leftChild, counter);
         countLeaves(root.rightChild, counter);
 
-        if (isLeaf(root)) {
+        if (isLeaf(root))
             counter.increment();
-            return;
-        }
     }
 
     public void traverseLevelOrder() {
