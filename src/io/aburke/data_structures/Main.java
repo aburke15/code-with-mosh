@@ -14,7 +14,7 @@ public class Main {
         bst.insert(0);
         bst.insert(3);
 
-        System.out.println(bst.countLeaves());
+        System.out.println(bst.contains(19));
     }
 
     public static int factorialRecursive(int n) {

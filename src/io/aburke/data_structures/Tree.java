@@ -17,19 +17,6 @@ public class Tree {
         }
     }
 
-    private Node root;
-    private int size;
-
-    public Tree() {
-        size = 0;
-    }
-
-    public void swapRoot() {
-        var temp = root.leftChild;
-        root.leftChild = root.rightChild;
-        root.rightChild = temp;
-    }
-
     private class Counter {
         private int count;
         public Counter() {
@@ -43,6 +30,58 @@ public class Tree {
         public int getCount() {
             return this.count;
         }
+    }
+
+    private Node root;
+    private int size;
+
+    public Tree() {
+        size = 0;
+    }
+
+    public boolean contains(int value) {
+        return contains(root, value);
+    }
+
+    private boolean contains(Node root, int value) {
+        if (root == null)
+            return false;
+
+        if (root.value == value)
+            return true;
+
+        return contains(root.leftChild, value) ||
+                contains(root.rightChild, value);
+    }
+
+    public int maxBst() {
+        return maxBst(root);
+    }
+
+    private int maxBst(Node root) {
+        if (root == null)
+            throw new IllegalStateException();
+
+        if (root.rightChild == null)
+            return root.value;
+
+        return maxBst(root.rightChild);
+    }
+
+    public int maxIterativeBst() {
+        return maxIterativeBst(root);
+    }
+
+    private int maxIterativeBst(Node root) {
+        if (root == null)
+            throw new IllegalStateException();
+
+        var current = root;
+        while (current.rightChild != null) {
+            current = current.rightChild;
+        }
+
+        return current.value;
     }
 
     public int countLeaves() {
@@ -189,18 +228,18 @@ public class Tree {
         return last.value;
     }
 
-    public int minBST() {
-        return minBST(root);
+    public int minBst() {
+        return minBst(root);
     }
 
-    private int minBST(Node node) {
+    private int minBst(Node node) {
         if (node == null)
             throw new IllegalStateException();
 
         if (node.leftChild == null)
             return node.value;
 
-        return minBST(node.leftChild);
+        return minBst(node.leftChild);
     }
 
     public void traversePostOrder() {
@@ -296,6 +335,12 @@ public class Tree {
 
     public int delete(int value) {
         return -1;
+    }
+
+    public void swapRoot() {
+        var temp = root.leftChild;
+        root.leftChild = root.rightChild;
+        root.rightChild = temp;
     }
 
     public int size() {
