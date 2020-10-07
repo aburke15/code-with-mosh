@@ -12,9 +12,11 @@ public class Main {
         bst.insert(8);
         bst.insert(10);
         bst.insert(0);
+        bst.insert(2);
         bst.insert(3);
 
-        System.out.println(bst.areSiblings(4, 9));
+        var ancestors = bst.getAncestors(8);
+        System.out.println(ancestors.toString());
     }
 
     public static int factorialRecursive(int n) {

@@ -32,6 +32,21 @@ public class Tree {
         }
     }
 
+    private class Descendant {
+        private boolean isDescendant;
+        public Descendant() {
+            isDescendant = false;
+        }
+
+        public void setIsDescendant() {
+            isDescendant = true;
+        }
+
+        public boolean isDescendant() {
+            return isDescendant;
+        }
+    }
+
     private Node root;
     private int size;
 
@@ -40,15 +55,36 @@ public class Tree {
     }
 
     public ArrayList<Integer> getAncestors(int value) {
-        var list = new ArrayList<Integer>();
-        getAncestors(root, value);
-        return list;
+        var ancestors = new ArrayList<Integer>();
+        var descendant = new Descendant();
+
+        getAncestors(root, value, ancestors, descendant);
+
+        if (descendant.isDescendant())
+            return ancestors;
+
+        return new ArrayList<>();
     }
 
-    private void getAncestors(Node root, int value) {
+    private void getAncestors(Node root, int value, ArrayList<Integer> ancestors, Descendant descendant) {
         if (root == null) return;
 
-        
+        var currentValue = root.value;
+
+        if (value == currentValue) {
+            descendant.setIsDescendant();
+            return;
+        }
+
+        if (value < currentValue) {
+            ancestors.add(currentValue);
+            getAncestors(root.leftChild, value, ancestors, descendant);
+        }
+
+        if (value > currentValue) {
+            ancestors.add(currentValue);
+            getAncestors(root.rightChild, value, ancestors, descendant);
+        }
     }
 
     public boolean areSiblings(int first, int second) {
