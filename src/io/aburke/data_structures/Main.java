@@ -2,21 +2,19 @@ package io.aburke.data_structures;
 
 public class Main {
     public static void main(String[] args) {
-        Tree bst = new Tree();
+        var avlTree = new AvlTree();
 
-        bst.insert(7);
-        bst.insert(4);
-        bst.insert(9);
-        bst.insert(1);
-        bst.insert(6);
-        bst.insert(8);
-        bst.insert(10);
-        bst.insert(0);
-        bst.insert(2);
-        bst.insert(3);
+        avlTree.insert(7);
+        avlTree.insert(4);
+        avlTree.insert(9);
+        avlTree.insert(1);
+        avlTree.insert(6);
+        avlTree.insert(8);
+        avlTree.insert(10);
+        avlTree.insert(0);
+        avlTree.insert(2);
+        avlTree.insert(3);
 
-        var ancestors = bst.getAncestors(8);
-        System.out.println(ancestors.toString());
     }
 
     public static int factorialRecursive(int n) {
