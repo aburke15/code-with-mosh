@@ -2,9 +2,10 @@ package io.aburke.data_structures;
 
 public class AvlTree {
     private class AvlNode {
-        int value;
-        AvlNode leftChild;
-        AvlNode rightChild;
+        private int value;
+        private int height;
+        private AvlNode leftChild;
+        private AvlNode rightChild;
 
         public AvlNode(int value) {
             this.value = value;
@@ -12,7 +13,7 @@ public class AvlTree {
 
         @Override
         public String toString() {
-            return "Value=" + this.value;
+            return "Value=" + this.value + " - " + "Height=" + this.height;
         }
     }
 
@@ -21,6 +22,12 @@ public class AvlTree {
 
     public AvlTree() {
         this.size = 0;
+    }
+
+    private int height(AvlNode root) {
+        return root == null ? -1 : Math.max(
+                height(root.leftChild),
+                height(root.rightChild)) + 1;
     }
 
     public void insert(int value) {
@@ -36,7 +43,22 @@ public class AvlTree {
         else if (value > root.value)
             root.rightChild = insert(root.rightChild, value);
 
+        root.height = height(root);
+
+        if (balanceFactor(root) > 1)
+            System.out.println(root.value);
+        if (balanceFactor(root) < -1)
+            System.out.println(root.value);
+
         return root;
+    }
+
+    private int balanceFactor(AvlNode root) {
+        return height(root.leftChild) - height(root.rightChild);
+    }
+
+    private boolean isLeaf(AvlNode root) {
+        return (root.leftChild == null) && (root.rightChild == null);
     }
 
 /// My initial implementation works but it's not concise

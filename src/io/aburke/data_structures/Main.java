@@ -4,16 +4,20 @@ public class Main {
     public static void main(String[] args) {
         var avlTree = new AvlTree();
 
+//        avlTree.insert(7);
+//        avlTree.insert(4);
+//        avlTree.insert(9);
+//        avlTree.insert(1);
+//        avlTree.insert(6);
+//        avlTree.insert(8);
+//        avlTree.insert(10);
+//        avlTree.insert(0);
+//        avlTree.insert(2);
+//        avlTree.insert(3);
+
         avlTree.insert(7);
         avlTree.insert(4);
-        avlTree.insert(9);
         avlTree.insert(1);
-        avlTree.insert(6);
-        avlTree.insert(8);
-        avlTree.insert(10);
-        avlTree.insert(0);
-        avlTree.insert(2);
-        avlTree.insert(3);
 
     }
 
