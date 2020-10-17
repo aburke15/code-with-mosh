@@ -4,16 +4,19 @@ public class AvlTree {
     private class AvlNode {
         private int value;
         private int height;
+        private int depth;
         private AvlNode leftChild;
         private AvlNode rightChild;
 
         public AvlNode(int value) {
             this.value = value;
+            this.depth = 0;
         }
 
         @Override
         public String toString() {
-            return "Value=" + this.value + " - " + "Height=" + this.height;
+            return "Value=" + this.value + " - "
+                    + "Height=" + this.height;
         }
     }
 
@@ -22,12 +25,6 @@ public class AvlTree {
 
     public AvlTree() {
         this.size = 0;
-    }
-
-    private int height(AvlNode root) {
-        return root == null ? -1 : Math.max(
-                height(root.leftChild),
-                height(root.rightChild)) + 1;
     }
 
     public void insert(int value) {
@@ -45,16 +42,40 @@ public class AvlTree {
 
         root.height = height(root);
 
-        if (balanceFactor(root) > 1)
-            System.out.println(root.value);
-        if (balanceFactor(root) < -1)
-            System.out.println(root.value);
+        if (isLeftHeavy(root))
+            System.out.println(root.value + " is left heavy.");
+        if (isRightHeavy(root))
+            System.out.println(root.value + " is left heavy.");
 
         return root;
     }
 
+    private boolean isLeftHeavy(AvlNode root) {
+        return balanceFactor(root) > 1;
+    }
+
+    private boolean isRightHeavy(AvlNode root) {
+        return balanceFactor(root) < -1;
+    }
+
+    private int depth(AvlNode root) {
+        if (root == null) return 0;
+
+        root.depth += 1;
+
+        return root.depth = Math.max(
+                depth(root.leftChild),
+                depth(root.rightChild));
+    }
+
     private int balanceFactor(AvlNode root) {
-        return height(root.leftChild) - height(root.rightChild);
+        return root == null ? 0 : height(root.leftChild) - height(root.rightChild);
+    }
+
+    private int height(AvlNode root) {
+        return root == null ? -1 : Math.max(
+                height(root.leftChild),
+                height(root.rightChild)) + 1;
     }
 
     private boolean isLeaf(AvlNode root) {

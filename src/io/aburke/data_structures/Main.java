@@ -18,7 +18,6 @@ public class Main {
         avlTree.insert(7);
         avlTree.insert(4);
         avlTree.insert(1);
-
     }
 
     public static int factorialRecursive(int n) {
